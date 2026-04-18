@@ -1,0 +1,212 @@
+/* ==============================================================
+   kyriosMICA · brand.css
+   Shared design tokens, typography and utility classes.
+   v3 · 2026
+   ============================================================== */
+
+/* --- Google Fonts (Playfair Display + JetBrains Mono) --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* --- Design tokens --- */
+:root {
+  /* Palette (aligned with brand kit v3) */
+  --marine: #0A1628;
+  --marine-2: #0F1E36;
+  --deep: #050C17;
+  --gold: #C9972A;
+  --gold-lt: #E8B84B;
+  --gold-soft: rgba(201, 151, 42, 0.12);
+  --earth: #8B4513;
+  --mahog: #5C3310;
+  --cyan: #22D3EE;
+  --cyan2: #22D3EE;           /* alias used by legacy inline scripts */
+  --cyan-soft: rgba(34, 211, 238, 0.12);
+  --violet: #A78BFA;
+  --white: #F1F5F9;
+  --slate: #A8BCDC;
+  --mute: #9CA3AF;
+  --at: #E8B84B;               /* AT coloring */
+  --cg: #22D3EE;               /* CG coloring */
+  --danger: #EF4444;
+  --warn: #F59E0B;
+  --ok: #10B981;
+
+  /* Typography */
+  --ff-display: 'Playfair Display', Georgia, serif;
+  --ff-mono:    'JetBrains Mono', 'Fira Code', Menlo, monospace;
+  --ff-sans:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout */
+  --nav-h: 72px;
+  --container-max: 1320px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --dur-fast: .15s;
+  --dur: .25s;
+  --dur-slow: .45s;
+}
+
+/* --- Reset (light) --- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--marine);
+  color: var(--white);
+  font-family: var(--ff-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body { min-height: 100vh; }
+a { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* --- Container --- */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Typography --- */
+.h-hero {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.h-section {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+.h-sub {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--gold);
+}
+.mono-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.body-text {
+  font-family: var(--ff-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--white);
+}
+
+/* --- Slogan bicolore (canonical) --- */
+.slogan-bicolor {
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(20px, 2.5vw, 28px);
+}
+.slogan-bicolor .s-white { color: var(--white); }
+.slogan-bicolor .s-cyan  { color: var(--cyan); }
+
+/* --- Bicolor wordmark (H1 "kyriosMICA") --- */
+.wordmark {
+  font-family: var(--ff-display);
+  font-weight: 700;
+}
+.wordmark .w-white { color: var(--white); }
+.wordmark .w-gold  { color: var(--gold); }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  cursor: pointer;
+}
+.btn-gold {
+  background: var(--gold);
+  color: var(--marine);
+  border: 1px solid var(--gold);
+}
+.btn-gold:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.btn-cyan {
+  background: var(--cyan);
+  color: var(--marine);
+  border: 1px solid var(--cyan);
+}
+.btn-cyan:hover { filter: brightness(1.1); }
+
+/* --- Cards --- */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+.card-navy {
+  background: var(--marine-2);
+  border: 1px solid rgba(201, 151, 42, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+/* --- Reveal on scroll --- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* --- Dividers --- */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+  opacity: 0.6;
+  margin: 24px 0;
+}
+
+/* --- Accessibility --- */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* --- Utilities --- */
+.text-center { text-align: center; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-xs { gap: 6px; }
+.gap-sm { gap: 12px; }
+.gap-md { gap: 20px; }
+.gap-lg { gap: 32px; }
+.mt-sm { margin-top: 12px; }
+.mt-md { margin-top: 24px; }
+.mt-lg { margin-top: 48px; }
+.hidden { display: none !important; }
