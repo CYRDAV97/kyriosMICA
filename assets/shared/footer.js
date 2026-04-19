@@ -45,7 +45,13 @@
         '<div>' +
           '<h4 data-fr="Institut" data-en="Institute">Institut</h4>' +
           '<a href="/#science" ' +
-             'data-fr="Science &amp; Qudits-36" data-en="Science &amp; Qudits-36">Science &amp; Qudits-36</a>' +
+             'data-fr="Science" data-en="Science">Science</a>' +
+          '<a href="/#applications" ' +
+             'data-fr="Applications" data-en="Applications">Applications</a>' +
+          '<a href="/#validation" ' +
+             'data-fr="Validation" data-en="Validation">Validation</a>' +
+          '<a href="/#vision" ' +
+             'data-fr="Vision 2031" data-en="Vision 2031">Vision 2031</a>' +
           '<a href="/#challenge" ' +
              'data-fr="D\u00e9fi Mondial" data-en="World Challenge">D\u00e9fi Mondial</a>' +
           '<a href="/#revue" ' +
@@ -62,11 +68,19 @@
       '<div class="kmica-footer-bottom">' +
         '<span>\u00a9 2026 kyriosMICA</span>' +
         '<span class="sep">\u00b7</span>' +
-        '<span>Cyrille Egnon DAVOH</span>' +
+        '<span data-fr="Fondateur : Cyrille Egnon Davoh" data-en="Founder: Cyrille Egnon Davoh">Fondateur : Cyrille Egnon Davoh</span>' +
         '<span class="sep">\u00b7</span>' +
         '<span data-fr="Tous droits r\u00e9serv\u00e9s" data-en="All rights reserved">Tous droits r\u00e9serv\u00e9s</span>' +
         '<span class="sep">\u00b7</span>' +
         '<span data-fr="B\u00e9nin, Afrique de l\u2019Ouest" data-en="Benin, West Africa">B\u00e9nin, Afrique de l\u2019Ouest</span>' +
+      '</div>' +
+
+      // Admin button — discret, aligné sous le copyright
+      '<div class="kmica-footer-admin">' +
+        '<button type="button" onclick="if(typeof openAdmin===\'function\')openAdmin();" ' +
+                'class="kmica-admin-btn" ' +
+                'data-fr="\u2699 Administration" data-en="\u2699 Administration" ' +
+                'aria-label="Administration">\u2699 Administration</button>' +
       '</div>';
 
     mount.innerHTML = html;

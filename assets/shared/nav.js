@@ -6,7 +6,10 @@
   'use strict';
 
   var MENU = [
-    { fr: 'Science',       en: 'Science',        href: '/lab/science4.html' },
+    { fr: 'Science',       en: 'Science',        href: '#science' },
+    { fr: 'Applications',  en: 'Applications',   href: '#applications' },
+    { fr: 'Validation',    en: 'Validation',     href: '#validation' },
+    { fr: 'Vision',        en: 'Vision',         href: '#vision' },
     { fr: 'Laboratoires',  en: 'Laboratories',   children: [
       { fr: 'Simulateur Qudits-36',  en: 'Qudits-36 Simulator',
         sub_fr: 'Démo pédagogique interactive',
