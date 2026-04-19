@@ -3832,32 +3832,17 @@ function updateAdminBtn() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  // v3.2.1: Admin access disabled in UI (kept in code for v3.3 rework)
+  // Old triggers (triple-click logo, ?admin URL param) commented out
   updateAdminBtn();
   if (isAdmin()) { adminRenderAll(); adminApplyStoredSettings(); }
-  if (window.location.search.includes('admin')) { openAdminLogin(); }
-  let clicks = 0, timer = null;
-  function handleLogoClick() {
-    clicks++;
-    clearTimeout(timer);
-    timer = setTimeout(function() { clicks = 0; }, 600);
-    if (clicks >= 3) { clicks = 0; openAdmin(); }
-  }
-  document.querySelectorAll('.nav-logo, .nav-logo-text').forEach(function(el) {
-    el.addEventListener('click', handleLogoClick);
-  });
 });
 
-// Triple-clic logo
+// v3.2.1: Second triple-click handler also disabled (see above)
+// Kept structure for v3.3 rework which will reactivate admin with new behavior
 let _ac=0,_at=null;
 document.addEventListener('DOMContentLoaded',()=>{
-  const logo=document.querySelector('.nav-logo,.nav-logo-text');
-  if(logo){logo.addEventListener('click',()=>{_ac++;clearTimeout(_at);_at=setTimeout(()=>{_ac=0;},600);if(_ac>=3){_ac=0;openAdmin();}});}
   updateAdminBtn();adminRenderAll();adminApplyStoredSettings();
-  // Open admin via URL param ?admin
-  if(window.location.search.includes('admin')){
-    const el=document.getElementById('admin-login');
-    if(el){el.style.display='flex';el.classList.add('open');}
-  }
 });
 
 function adminTab(name){
