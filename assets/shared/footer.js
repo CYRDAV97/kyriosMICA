@@ -44,23 +44,23 @@
         // Institutional column
         '<div>' +
           '<h4 data-fr="Institut" data-en="Institute">Institut</h4>' +
-          '<a href="/#science" ' +
+          '<a href="/#science" data-spa-section="science" ' +
              'data-fr="Science" data-en="Science">Science</a>' +
-          '<a href="/#applications" ' +
+          '<a href="/#applications" data-spa-section="applications" ' +
              'data-fr="Applications" data-en="Applications">Applications</a>' +
-          '<a href="/#validation" ' +
+          '<a href="/#validation" data-spa-section="validation" ' +
              'data-fr="Validation" data-en="Validation">Validation</a>' +
-          '<a href="/#vision" ' +
+          '<a href="/#vision" data-spa-section="vision" ' +
              'data-fr="Vision 2031" data-en="Vision 2031">Vision 2031</a>' +
-          '<a href="/#challenge" ' +
+          '<a href="/#challenge" data-spa-section="challenge" ' +
              'data-fr="D\u00e9fi Mondial" data-en="World Challenge">D\u00e9fi Mondial</a>' +
-          '<a href="/#revue" ' +
+          '<a href="/#revue" data-spa-section="revue" ' +
              'data-fr="Revue scientifique" data-en="Scientific Journal">Revue scientifique</a>' +
-          '<a href="/#documents" ' +
+          '<a href="/#documents" data-spa-section="documents" ' +
              'data-fr="Documents" data-en="Documents">Documents</a>' +
-          '<a href="/#consortium" ' +
+          '<a href="/#consortium" data-spa-section="consortium" ' +
              'data-fr="Consortium" data-en="Consortium">Consortium</a>' +
-          '<a href="/#contact" ' +
+          '<a href="/#contact" data-spa-section="contact" ' +
              'data-fr="Contact" data-en="Contact">Contact</a>' +
         '</div>' +
       '</div>' +
@@ -73,24 +73,36 @@
         '<span data-fr="Tous droits r\u00e9serv\u00e9s" data-en="All rights reserved">Tous droits r\u00e9serv\u00e9s</span>' +
         '<span class="sep">\u00b7</span>' +
         '<span data-fr="B\u00e9nin, Afrique de l\u2019Ouest" data-en="Benin, West Africa">B\u00e9nin, Afrique de l\u2019Ouest</span>' +
-      '</div>' +
-
-      // Admin button — discret, aligné sous le copyright
-      '<div class="kmica-footer-admin">' +
-        '<button type="button" onclick="if(typeof openAdmin===\'function\')openAdmin();" ' +
-                'class="kmica-admin-btn" ' +
-                'data-fr="\u2699 Administration" data-en="\u2699 Administration" ' +
-                'aria-label="Administration">\u2699 Administration</button>' +
       '</div>';
 
     mount.innerHTML = html;
     mount.className = 'kmica-footer';
   }
 
+  function isHomePage() {
+    var p = window.location.pathname;
+    return p === '/' || p.endsWith('/index.html') || p === '';
+  }
+
+  function wireFooter(mount) {
+    // Intercept SPA links if we're on homepage — same behaviour as nav
+    if (!isHomePage()) return;
+    mount.querySelectorAll('a[data-spa-section]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var sec = a.getAttribute('data-spa-section');
+        if (sec && typeof window.showPage === 'function') {
+          e.preventDefault();
+          window.showPage(sec);
+        }
+      });
+    });
+  }
+
   function init() {
     var mount = document.getElementById('kyrios-footer');
     if (!mount) return;
     render(mount);
+    wireFooter(mount);
   }
 
   if (document.readyState === 'loading') {
